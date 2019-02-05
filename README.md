@@ -54,8 +54,12 @@ Now that we have our foundation set up, let's start building out our ecommerce A
                 * If you're not, navigate back to the root of the project directory.
             * From there, run the following command `nodemon server/index.js`
             * You should see the `console.log` message from your `listen` method in the console.
+
+    ### Solution
     <details>
+
     <summary><code> server/index.js </code></summary>
+
     ```js
     const express = require('express');
 
@@ -87,25 +91,29 @@ Now that we know our server is able to receive requests, let's get started addin
 * Check your console to make sure your server is still running
 * Open your browser and type `http://localhost:[your-port]/api/products`
     * You should see your array of products printed to the browser
-    <details>
-    <summary><code> server/index.js </code></summary>
-    ```js
-    const express = require('express');
-    const products = require('../products.json');
 
-    const app = express();
+### Solution
+<details>
 
-    const port = 3001;
+<summary><code> server/index.js </code></summary>
 
-    app.get('/api/products', (req, res) => {
-        res.status(200).send(products)
-    });
+```js
+const express = require('express');
+const products = require('../products.json');
 
-    app.listen(port, () => {
-        console.log(`Server listening on port: ${port}`);
-    });
-    ```
-    </details>
+const app = express();
+
+const port = 3001;
+
+app.get('/api/products', (req, res) => {
+    res.status(200).send(products)
+});
+
+app.listen(port, () => {
+    console.log(`Server listening on port: ${port}`);
+});
+```
+</details>
 
 
 ## Step 4
@@ -123,41 +131,47 @@ In this step, we'll make a small adjustment to our `index.js`. A couple of aspec
     * Remember, in node we use `module.exports`
 * Remember to require `products.json` into our `getProducts` file so it's in scope.
 * Require the file into `index.js` as a variable called `getProducts`
-* Replace the Handler with our `getProducts` function
+* Replace the Handler inside of `index.js` with our `getProducts` function we just required
     * Remember, any function that's used on an express method (represented as `app`) will receive `req` and `res` by default.
 * Test it in the browser like the previous step
     * The same content should appear in the browser window
     * Some changes don't affect how the application operates, but they do affect how easy it is to _work_ as a developer in the application.
-    <details>
-    <summary><code> server/index.js </code></summary>
-    ```js
-    const express = require('express');
-    const getProducts = require('./getProducts');
 
-    const app = express();
+### Solution
 
-    const port = 3001;
+<details>
 
-    app.get('/api/products', getProducts);
+<summary><code> server/index.js </code></summary>
 
-    app.listen(port, () => {
-        console.log(`Server listening on port: ${port}`);
-    });
-    ```
-    </details>
+```js
+const express = require('express');
+const getProducts = require('./getProducts');
 
-    <details>
-    <summary><code> server/getProducts.js </code></summary>
-    ```js
-        const products = require('../products.json');
+const app = express();
 
-        const getProducts = (req, res) => {
-            res.status(200).send(products)
-        }
+const port = 3001;
 
-        module.exports = getProducts;
-    ```
-    </details>
+app.get('/api/products', getProducts);
+
+app.listen(port, () => {
+    console.log(`Server listening on port: ${port}`);
+});
+```
+</details>
+
+<details>
+<summary><code> server/getProducts.js </code></summary>
+
+```js
+const products = require('../products.json');
+
+const getProducts = (req, res) => {
+    res.status(200).send(products)
+}
+
+module.exports = getProducts;
+```
+</details>
 
 ## Step 5
 
@@ -185,49 +199,52 @@ One of the benefits of using Express is that once our foundation is established,
         * It should print the content from the item with an id of 2 from our dataset
         * Try it with an id that doesn't exist (1334)
             * It should print `Item not in list` to the screen
-    <details>
-    <summary><code> server/index.js </code></summary>
-    ```js
-    const express = require('express');
-    const getProducts = require('./getProducts');
-    const getProduct = require('./getProduct);
+<details>
 
-    const app = express();
+<summary><code> server/index.js </code></summary>
 
-    const port = 3001;
+```js
+const express = require('express');
+const getProducts = require('./getProducts');
+const getProduct = require('./getProduct);
 
-    app.get('/api/products', getProducts);
-    app.get('/api/product/:id', getProduct);
+const app = express();
 
-    app.listen(port, () => {
-        console.log(`Server listening on port: ${port}`);
-    });
-    ```
-    </details>
+const port = 3001;
 
-    <details>
-    <summary><code> server/getProduct.js </code></summary>
-    ```js
-        const products = require('../products.json');
+app.get('/api/products', getProducts);
+app.get('/api/product/:id', getProduct);
 
-        const getProduct = (req, res) => {
-            // find returns the item if it finds it, or undefined if not
-            const item = products.find(val => val.id === parseInt(req.params.id));
-            if (!item) {
-                return res.status(500).send("Item not in list");
-            }
-            res.status(200).send(products)
-        }
+app.listen(port, () => {
+    console.log(`Server listening on port: ${port}`);
+});
+```
+</details>
 
-        module.exports = getProduct;
-    ```
-    </details>
+<details>
+<summary><code> server/getProduct.js </code></summary>
+
+```js
+const products = require('../products.json');
+
+const getProduct = (req, res) => {
+    // find returns the item if it finds it, or undefined if not
+    const item = products.find(val => val.id === parseInt(req.params.id));
+    if (!item) {
+        return res.status(500).send("Item not in list");
+    }
+    res.status(200).send(products)
+}
+
+module.exports = getProduct;
+```
+</details>
 
 ## Step 6
 
 ### Summary
 
-At this point, we have a fairly solid API. We can retrieve all of our data from `/api/products` and we can retrieve specific items from our dataset with `/api/product/:id`. Let's add some flexibility to our `/api/products` endpoint. Currnetly, it will only retireve all the products, but we can have it serve an additional use case by utilizing `req.query`. Let's enable a request that allows us to filter based on a value. Rememeber, this is your API with your data, you get to set the rules and that includes what kind of filtering users are allowed to do.
+At this point, we have a fairly solid API. We can retrieve all of our data from `/api/products` and we can retrieve specific items from our dataset with `/api/product/:id`. Let's add some flexibility to our `/api/products` endpoint. Currently, it will only retireve all the products or a product by a specific ID, but we can have it serve an additional use case by utilizing `req.query`. Let's enable a request that allows us to filter based on a value. Rememeber, this is your API with your data, you get to set the rules and that includes what kind of filtering users are allowed to do.
 
 ### Instructions
 
@@ -239,29 +256,31 @@ At this point, we have a fairly solid API. We can retrieve all of our data from 
         * If there is no `price` property on `req.query`, send all the products
     * Test in the browser
         * You can attach queries to the request by appending them to the url
-        * `http://localhost:[your-port]/api/products?price=10.99
+        * `http://localhost:[your-port]/api/products?price=10.99`
         * Try it with various prices and make sure only products that cost the same or more than the price are received.
     * Query parameters are always optional and should default to a request for all the data if no query is provided.
-    <details>
-    <summary><code> server/getProducts.js </code></summary>
-    ```js
-        const products = require('../products.json');
 
-        const getProducts = (req, res) => {
-            if (req.query.price) {
-                const items = products.filter(val => val.price >= parseInt(req.query.price));
-                return res.status(200).send(items);
-            }
-            res.status(200).send(products)
-        }
+<details>
+<summary><code> server/getProducts.js </code></summary>
 
-        module.exports = getProducts;
-    ```
-    </details>
+```js
+const products = require('../products.json');
+
+const getProducts = (req, res) => {
+    if (req.query.price) {
+        const items = products.filter(val => val.price >= parseInt(req.query.price));
+        return res.status(200).send(items);
+    }
+    res.status(200).send(products)
+}
+
+module.exports = getProducts;
+```
+</details>
 
 ## Wrap-up
 
-We have a great start to a `read-only API`. This means it only supports getting data and not updating, adding, or deleting data. Many of the API's you'll use on your first project will be read only. The next segment will cover how we bring that data in and make it our own so we can build a full CRUD API.
+We have a great start to a `read-only API`. This means it only supports getting data but has no functionality for updating, adding, or deleting data. Many of the API's you'll use on your first project will be read only. The next segment will cover how we bring that data in and make it our own so we can build a full CRUD (Create, Read, Update, Delete) API.
 
 This is a great opportunity to practice building API's. Start from scratch with a new server and see how much you can do on your own. If you want to work with differnt data, [mockaroo](https://www.mockaroo.com) is a great tool for creating json files full of data. Download the file and place it in the directory you're working in.
 
