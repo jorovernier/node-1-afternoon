@@ -36,6 +36,10 @@ Now that we have our foundation set up, let's start building out our ecommerce A
 
 * Start by installing Express
     * `npm install express`
+    * This command will generate a `node_modules` folder.
+        * node_modules shouldn't be committed to github because they're something we'll download again later if needed.
+        * create a `.gitignore` file in the root of the directory
+            * add `node_modules/` to your .gitignore
 * Next, build the skeleton of your server
     * This should include:
         * Requiring express
@@ -254,13 +258,46 @@ At this point, we have a fairly solid API. We can retrieve all of our data from 
         module.exports = getProducts;
     ```
     </details>
-## Step 7
 
-### Summary
+## Wrap-up
 
+We have a great start to a `read-only API`. This means it only supports getting data and not updating, adding, or deleting data. Many of the API's you'll use on your first project will be read only. The next segment will cover how we bring that data in and make it our own so we can build a full CRUD API.
 
+This is a great opportunity to practice building API's. Start from scratch with a new server and see how much you can do on your own. If you want to work with differnt data, [mockaroo](https://www.mockaroo.com) is a great tool for creating json files full of data. Download the file and place it in the directory you're working in.
 
-### Instructions
+Items to reinforce and get comfortable with are:
+
+* Node Fundamentals
+    * Using node to exectue JavaScript files
+    * Require/Module.exports
+* NPM
+    * npm init
+    * installing modules
+* Express Fundamentals
+    * Endpoints
+        * Method
+        * Path
+        * Handler
+            * Req
+                * Params
+                * Queries
+            * Res
+                * Status
+                * Send
+
+* Additionally, pair up and take turns answering the following:
+    * What is Node?
+    * What is the request-response cycle?
+    * What is the purpose of a server?
+    * What's the `package.json` for?
+    * What are `node_modules`?
+    * What is Express?
+    * What does the `listen` method do?
+    * What are some common status codes and what do they mean?
+    * What's the difference between `npm install package-name` and `npm install -g package-name`?
+    * When should I use a `query` vs. a `param` and vice-versa?
+
+If your pair needs help answering these, utilize your available resources, then get with a mentor for further clarification if needed. Come back to that question later.
 
 ## Contributions
 
