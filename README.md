@@ -227,9 +227,33 @@ At this point, we have a fairly solid API. We can retrieve all of our data from 
 
 ### Instructions
 
-* Open `server/index.js`
+* Open `server/getProducts.js`
+    * Let's allow the user to filter the products based on price.
+    * add a conditional before sending the products that checks if there's a property called `price` on the `req.query` object
+        * If there is, filter through the `products` array and send any items that cost _more_ or the same as the provided price
+            * Remember, query values are received as strings and the prices in our objects are numbers
+        * If there is no `price` property on `req.query`, send all the products
+    * Test in the browser
+        * You can attach queries to the request by appending them to the url
+        * `http://localhost:[your-port]/api/products?price=10.99
+        * Try it with various prices and make sure only products that cost the same or more than the price are received.
+    * Query parameters are always optional and should default to a request for all the data if no query is provided.
+    <details>
+    <summary><code> server/getProducts.js </code></summary>
+    ```js
+        const products = require('../products.json');
 
+        const getProducts = (req, res) => {
+            if (req.query.price) {
+                const items = products.filter(val => val.price >= parseInt(req.query.price));
+                return res.status(200).send(items);
+            }
+            res.status(200).send(products)
+        }
 
+        module.exports = getProducts;
+    ```
+    </details>
 ## Step 7
 
 ### Summary
