@@ -4,6 +4,8 @@
 
 In this project we're going to build the backend service (API) for an ecommerce site. We'll be able to display products, search for products, and select a specific product for more info. There will be some accelerator content at the end to help add additional challenges.
 
+The goal is to better understand how the client (frontend application) and server (backend application) interact with each other in the `request -> response cycle`. This includes generating a request on the client, receiving and parsing it on the server, and sending the response back to the client.
+
 ## Setup
 
 * `Fork` this repository.
@@ -44,7 +46,27 @@ Now that we have a handle on the existing code that we're working with, let's st
             * Remember, it should be different than the port our React Development Server will listen on, which is `3000`.
         * Invoking `app.listen`:
             * Provide it the port variable from above
-            * And a callback with a console log so we know our server is running.
+            * And a callback with a console log so we know our server is running and ready to receive requests.
+        * Finally, go to your terminal/git bash.
+            * Type `pwd` to make sure you're in the root directory
+                * It should look something like this `/Users/yourname/DevMountain/node/node-1`
+                * If you're not, navigate back to the root of the project directory.
+            * From there, run the following command `nodemon server/index.js`
+            * You should see the `console.log` message from your `listen` method in the console.
+    <details>
+    <summary><code> server/index.js </code></summary>
+    ```js
+    const express = require('express');
+
+    const app = express();
+
+    const port = 3001;
+
+    app.listen(port, () => {
+        console.log(`Server listening on port: ${port}`);
+    });
+    ```
+    </details>
 
 ## Contributions
 
