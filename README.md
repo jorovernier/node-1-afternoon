@@ -68,6 +68,83 @@ Now that we have a handle on the existing code that we're working with, let's st
     ```
     </details>
 
+## Step 3
+
+### Summary
+
+Now that we know our server is able to receive requests, let's get started adding our first endpoint and sending our first piece of data. The data we'll be using is provided for you in the `server` directory called `products.json`.
+
+### Instructions
+
+* Open `server/index.js`
+* Require the `products.json` file and store it to a variable called `products`
+* Write an endpoint that will send our array of products up to the client (note: make sure to do this below our `app` declaration)
+    * An endpoint consists of a `Method`, `Path`, and `Handler`
+    * The method for this endpoint should be a `GET` request
+    * The path should be `/api/products`
+    * The handler should be a function that accepts `req` and `res` as parameters and sends our `products` back to the client with a status of `200`
+* Check your console to make sure your server is still running
+* Open your browser and type `http://localhost:[your-port]/api/products`
+    * You should see your array of products printed to the browser
+    <details>
+    <summary><code> server/index.js </code></summary>
+    ```js
+    const express = require('express');
+    const products = require('./products.json');
+
+    const app = express();
+
+    const port = 3001;
+
+    app.get('/api/products', (req, res) => {
+        res.status(200).send(products)
+    });
+
+    app.listen(port, () => {
+        console.log(`Server listening on port: ${port}`);
+    });
+    ```
+    </details>
+
+
+## Step 4
+
+### Summary
+
+
+
+### Instructions
+
+
+
+## Step 5
+
+### Summary
+
+
+
+### Instructions
+
+
+
+## Step 6
+
+### Summary
+
+
+
+### Instructions
+
+
+
+## Step 7
+
+### Summary
+
+
+
+### Instructions
+
 ## Contributions
 
 If you see a problem or a typo, please fork, make the necessary changes, and create a pull request so we can review your changes and merge them into the master repo and branch.
