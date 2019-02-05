@@ -2,41 +2,49 @@
   {
     "id": 1,
     "product_name": "DM Beanie",
-    "price": "$7.03"
+    "price": "$7.03",
+    "img_url": "https://assets.bigcartel.com/product_images/225130150/IMG_6561.JPG"
   },
   {
     "id": 2,
     "product_name": "DM Hat",
-    "price": "$6.72"
+    "price": "$6.72",
+    "img_url": "https://assets.bigcartel.com/product_images/212438563/IMG_1263.JPG"
   },
   {
     "id": 3,
     "product_name": "DM Shirt",
-    "price": "$0.01"
+    "price": "$0.01",
+    "img_url": "https://assets.bigcartel.com/product_images/154156375/2015-03-10_13.57.18.jpg"
   },
   {
     "id": 4,
     "product_name": "DM Socks",
-    "price": "$1.51"
+    "price": "$1.51",
+    "img_url": "https://assets.bigcartel.com/product_images/215231476/IMG_1956.JPG"
   },
   {
     "id": 5,
     "product_name": "DM Water Bottle",
-    "price": "$9.10"
+    "price": "$9.10",
+    "img_url": "https://assets.bigcartel.com/product_images/166717411/waterbottle_copy.JPG"
   },
   {
     "id": 6,
     "product_name": "DM Hoodie",
-    "price": "$1.51"
+    "price": "$1.51",
+    "img_url": "https://assets.bigcartel.com/product_images/223162987/IMG_5902.JPG"
   },
   {
     "id": 7,
     "product_name": "DM Hat - Other",
-    "price": "$8.99"
+    "price": "$8.99",
+    "img_url": "https://assets.bigcartel.com/product_images/215232499/IMG_1964.JPG"
   },
   {
     "id": 8,
     "product_name": "DM Lanyard",
-    "price": "$7.60"
+    "price": "$7.60",
+    "img_url": "https://assets.bigcartel.com/product_images/192866269/devmtnshop_%2821_of_25%29.jpg"
   }
 ]
