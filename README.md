@@ -117,15 +117,17 @@ In this step, we'll make a small adjustment to our `index.js`. A couple of aspec
 * Store it to a variable called `getProducts`
 * Export the function
     * Remember, in node we use `module.exports`
+* Remember to require `products.json` into our `getProducts` file so it's in scope.
 * Require the file into `index.js` as a variable called `getProducts`
 * Replace the Handler with our `getProducts` function
     * Remember, any function that's used on an express method (represented as `app`) will receive `req` and `res` by default.
 * Test it in the browser like the previous step
+    * The same content should appear in the browser window
+    * Some changes don't affect how the application operates, but they do affect how easy it is to _work_ as a developer in the application.
     <details>
     <summary><code> server/index.js </code></summary>
     ```js
     const express = require('express');
-    const products = require('../products.json');
     const getProducts = require('./getProducts');
 
     const app = express();
@@ -143,6 +145,8 @@ In this step, we'll make a small adjustment to our `index.js`. A couple of aspec
     <details>
     <summary><code> server/getProducts.js </code></summary>
     ```js
+        const products = require('../products.json');
+
         const getProducts = (req, res) => {
             res.status(200).send(products)
         }
@@ -155,20 +159,75 @@ In this step, we'll make a small adjustment to our `index.js`. A couple of aspec
 
 ### Summary
 
-
+One of the benefits of using Express is that once our foundation is established, we can quickly scale our application by adding more endpoints. In this step we'll introduce an endpoint that allows us to request a single item from our dataset.
 
 ### Instructions
 
+* Open `server/index.js`
+* Write an endpoint that will:
+    * use the `GET` method
+    * has a path that uses a `parameter` called `id`
+        * Remember, this parameter will give us access to `req.params` in our handler
+            * The path should be `/api/product`
+            * To tell the path to expect a parameter, append `/:id` to the end
+        * We'll use it to capture a specific id for one of our products
+    * The handler should be required from a file called `getProduct.js`
+        * Remember to require the `products.json` file so it's in scope.
+        * It should use `req.params` to find the item with the matching `id` in our products array.
+            * If the item is in the array, send it back to the client
+            * If it is not in the array, it should send a status of 500 with a message `Item not in list`
+            * Note: `req.params` will be a string and the id we're checking against is a number
+    * Test the endpoint in your browser by entering `http://localhost:[your-port]/api/product/2
+        * It should print the content from the item with an id of 2 from our dataset
+        * Try it with an id that doesn't exist (1334)
+            * It should print `Item not in list` to the screen
+    <details>
+    <summary><code> server/index.js </code></summary>
+    ```js
+    const express = require('express');
+    const getProducts = require('./getProducts');
+    const getProduct = require('./getProduct);
 
+    const app = express();
+
+    const port = 3001;
+
+    app.get('/api/products', getProducts);
+    app.get('/api/product/:id', getProduct);
+
+    app.listen(port, () => {
+        console.log(`Server listening on port: ${port}`);
+    });
+    ```
+    </details>
+
+    <details>
+    <summary><code> server/getProduct.js </code></summary>
+    ```js
+        const products = require('../products.json');
+
+        const getProduct = (req, res) => {
+            // find returns the item if it finds it, or undefined if not
+            const item = products.find(val => val.id === parseInt(req.params.id));
+            if (!item) {
+                return res.status(500).send("Item not in list");
+            }
+            res.status(200).send(products)
+        }
+
+        module.exports = getProduct;
+    ```
+    </details>
 
 ## Step 6
 
 ### Summary
 
-
+At this point, we have a fairly solid API. We can retrieve all of our data from `/api/products` and we can retrieve specific items from our dataset with `/api/product/:id`. Let's add some flexibility to our `/api/products` endpoint. Currnetly, it will only retireve all the products, but we can have it serve an additional use case by utilizing `req.query`. Let's enable a request that allows us to filter based on a value. Rememeber, this is your API with your data, you get to set the rules and that includes what kind of filtering users are allowed to do.
 
 ### Instructions
 
+* Open `server/index.js`
 
 
 ## Step 7
