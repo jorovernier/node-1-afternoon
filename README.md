@@ -8,8 +8,8 @@ The goal is to better understand how the client (frontend application) and serve
 
 ## Setup
 
-* `Fork` this repository.
-* `Clone` your `fork`.
+* `Fork` this repository
+* `Clone` your `fork`
 
 ## Step 1
 
@@ -36,24 +36,24 @@ Now that we have our foundation set up, let's start building out our ecommerce A
 
 * Start by installing Express
     * `npm install express`
-    * This command will generate a `node_modules` folder.
-        * node_modules shouldn't be committed to github because they're something we'll download again later if needed.
+    * This command will generate a `node_modules` folder
+        * node_modules shouldn't be committed to github because they're something we'll download again later if needed
         * create a `.gitignore` file in the root of the directory
             * add `node_modules/` to your .gitignore
 * Next, build the skeleton of your server
     * This should include:
         * Requiring express
         * Declaring your `app` variable and setting it equal to express invoked
-        * Declaring the port you want your server to `listen` on.
+        * Declaring the port you want your server to `listen` on
         * Invoking `app.listen`:
             * Provide it the port variable from above
-            * And a callback with a console log so we know our server is running and ready to receive requests.
-        * Finally, go to your terminal/git bash.
+            * And a callback with a console log so we know our server is running and ready to receive requests
+        * Finally, go to your terminal/git bash
             * Type `pwd` to make sure you're in the root directory
                 * It should look something like this `/Users/yourname/DevMountain/node/node-1`
-                * If you're not, navigate back to the root of the project directory.
+                * If you're not, navigate back to the root of the project directory
             * From there, run the following command `nodemon server/index.js`
-            * You should see the `console.log` message from your `listen` method in the console.
+            * You should see the `console.log` message from your `listen` method in the console
 
     ### Solution
     <details>
@@ -129,13 +129,13 @@ In this step, we'll make a small adjustment to our `index.js`. A couple of aspec
 * Store it to a variable called `getProducts`
 * Export the function
     * Remember, in node we use `module.exports`
-* Remember to require `products.json` into our `getProducts` file so it's in scope.
+* Remember to require `products.json` into our `getProducts` file so it's in scope
 * Require the file into `index.js` as a variable called `getProducts`
 * Replace the Handler inside of `index.js` with our `getProducts` function we just required
-    * Remember, any function that's used on an express method (represented as `app`) will receive `req` and `res` by default.
+    * Remember, any function that's used on an express method (represented as `app`) will receive `req` and `res` by default
 * Test it in the browser like the previous step
     * The same content should appear in the browser window
-    * Some changes don't affect how the application operates, but they do affect how easy it is to _work_ as a developer in the application.
+    * Some changes don't affect how the application operates, but they do affect how easy it is to _work_ as a developer in the application
 
 ### Solution
 
@@ -166,7 +166,7 @@ app.listen(port, () => {
 const products = require('../products.json');
 
 const getProducts = (req, res) => {
-    res.status(200).send(products)
+    res.status(200).send(products);
 }
 
 module.exports = getProducts;
@@ -190,12 +190,12 @@ One of the benefits of using Express is that once our foundation is established,
             * To tell the path to expect a parameter, append `/:id` to the end
         * We'll use it to capture a specific id for one of our products
     * The handler should be required from a file called `getProduct.js`
-        * Remember to require the `products.json` file so it's in scope.
-        * It should use `req.params` to find the item with the matching `id` in our products array.
+        * Remember to require the `products.json` file so it's in scope
+        * It should use `req.params` to find the item with the matching `id` in our products array
             * If the item is in the array, send it back to the client
             * If it is not in the array, it should send a status of 500 with a message `Item not in list`
             * Note: `req.params` will be a string and the id we're checking against is a number
-    * Test the endpoint in your browser by entering `http://localhost:[your-port]/api/product/2
+    * Test the endpoint in your browser by entering `http://localhost:[your-port]/api/product/2`
         * It should print the content from the item with an id of 2 from our dataset
         * Try it with an id that doesn't exist (1334)
             * It should print `Item not in list` to the screen
@@ -233,7 +233,7 @@ const getProduct = (req, res) => {
     if (!item) {
         return res.status(500).send("Item not in list");
     }
-    res.status(200).send(products)
+    res.status(200).send(products);
 }
 
 module.exports = getProduct;
@@ -249,7 +249,7 @@ At this point, we have a fairly solid API. We can retrieve all of our data from 
 ### Instructions
 
 * Open `server/getProducts.js`
-    * Let's allow the user to filter the products based on price.
+    * Let's allow the user to filter the products based on price
     * add a conditional before sending the products that checks if there's a property called `price` on the `req.query` object
         * If there is, filter through the `products` array and send any items that cost _more_ or the same as the provided price
             * Remember, query values are received as strings and the prices in our objects are numbers
@@ -258,7 +258,7 @@ At this point, we have a fairly solid API. We can retrieve all of our data from 
         * You can attach queries to the request by appending them to the url
         * `http://localhost:[your-port]/api/products?price=10.99`
         * Try it with various prices and make sure only products that cost the same or more than the price are received.
-    * Query parameters are always optional and should default to a request for all the data if no query is provided.
+    * Query parameters are always optional and should default to a request for all the data if no query is provided
 
 <details>
 <summary><code> server/getProducts.js </code></summary>
@@ -271,7 +271,7 @@ const getProducts = (req, res) => {
         const items = products.filter(val => val.price >= parseInt(req.query.price));
         return res.status(200).send(items);
     }
-    res.status(200).send(products)
+    res.status(200).send(products);
 }
 
 module.exports = getProducts;
