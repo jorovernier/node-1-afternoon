@@ -233,7 +233,7 @@ const getProduct = (req, res) => {
     if (!item) {
         return res.status(500).send("Item not in list");
     }
-    res.status(200).send(products);
+    res.status(200).send(item);
 }
 
 module.exports = getProduct;
