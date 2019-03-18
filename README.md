@@ -316,7 +316,7 @@ Items to reinforce and get comfortable with are:
     * What's the difference between `npm install package-name` and `npm install -g package-name`?
     * When should I use a `query` vs. a `param` and vice-versa?
 
-If your pair needs help answering these, utilize your available resources, then get with a mentor for further clarification if needed. Come back to that question later.
+If your pair needs help answering these, utilize your available resources, then get with a mentor for further clarification. If needed, come back to the question later.
 
 ## Contributions
 
