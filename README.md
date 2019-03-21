@@ -244,7 +244,7 @@ module.exports = getProduct;
 
 ### Summary
 
-At this point, we have a fairly solid API. We can retrieve all of our data from `/api/products` and we can retrieve specific items from our dataset with `/api/product/:id`. Let's add some flexibility to our `/api/products` endpoint. Currently, it will only retrieve all the products or a product by a specific ID, but we can have it serve an additional use case by utilizing `req.query`. Let's enable a request that allows us to filter based on a value. Rememeber, this is your API with your data, you get to set the rules and that includes what kind of filtering users are allowed to do.
+At this point, we have a fairly solid API. We can retrieve all of our data from `/api/products` and we can retrieve specific items from our dataset with `/api/product/:id`. Let's add some flexibility to our `/api/products` endpoint. Currently, it will only retrieve all the products or a product by a specific ID, but we can have it serve an additional use case by utilizing `req.query`. Let's enable a request that allows us to filter based on a value. Remember, this is your API with your data, you get to set the rules and that includes what kind of filtering users are allowed to do.
 
 ### Instructions
 
