@@ -50,7 +50,7 @@ Now that we have our foundation set up, let's start building out our ecommerce A
             * And a callback with a console log so we know our server is running and ready to receive requests
         * Finally, go to your terminal/git bash
             * Type `pwd` to make sure you're in the root directory
-                * It should look something like this `/Users/yourname/DevMountain/node/node-1`
+                * It should look something like this `/Users/yourname/DevMountain/node/node-1-afternoon`
                 * If you're not, navigate back to the root of the project directory
             * From there, run the following command `nodemon server/index.js`
             * You should see the `console.log` message from your `listen` method in the console
@@ -244,13 +244,13 @@ module.exports = getProduct;
 
 ### Summary
 
-At this point, we have a fairly solid API. We can retrieve all of our data from `/api/products` and we can retrieve specific items from our dataset with `/api/product/:id`. Let's add some flexibility to our `/api/products` endpoint. Currently, it will only retireve all the products or a product by a specific ID, but we can have it serve an additional use case by utilizing `req.query`. Let's enable a request that allows us to filter based on a value. Rememeber, this is your API with your data, you get to set the rules and that includes what kind of filtering users are allowed to do.
+At this point, we have a fairly solid API. We can retrieve all of our data from `/api/products` and we can retrieve specific items from our dataset with `/api/product/:id`. Let's add some flexibility to our `/api/products` endpoint. Currently, it will only retrieve all the products or a product by a specific ID, but we can have it serve an additional use case by utilizing `req.query`. Let's enable a request that allows us to filter based on a value. Remember, this is your API with your data, you get to set the rules and that includes what kind of filtering users are allowed to do.
 
 ### Instructions
 
 * Open `server/getProducts.js`
     * Let's allow the user to filter the products based on price
-    * add a conditional before sending the products that checks if there's a property called `price` on the `req.query` object
+    * Add a conditional before sending the products that checks if there's a property called `price` on the `req.query` object
         * If there is, filter through the `products` array and send any items that cost _more_ or the same as the provided price
             * Remember, query values are received as strings and the prices in our objects are numbers
         * If there is no `price` property on `req.query`, send all the products
