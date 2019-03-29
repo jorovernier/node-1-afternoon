@@ -189,7 +189,7 @@ One of the benefits of using Express is that once our foundation is established,
             * The path should be `/api/product`
             * To tell the path to expect a parameter, append `/:id` to the end
         * We'll use it to capture a specific id for one of our products
-    * The handler should be required from a file called `getProduct.js`
+    * The handler should be required from a file called `getProduct.js` 
         * Remember to require the `products.json` file so it's in scope
         * It should use `req.params` to find the item with the matching `id` in our products array
             * If the item is in the array, send it back to the client
@@ -282,7 +282,7 @@ module.exports = getProducts;
 
 We have a great start to a `read-only API`. This means it only supports getting data but has no functionality for updating, adding, or deleting data. Many of the API's you'll use on your first project will be read only. The next segment will cover how we bring that data in and make it our own so we can build a full CRUD (Create, Read, Update, Delete) API.
 
-This is a great opportunity to practice building API's. Start from scratch with a new server and see how much you can do on your own. If you want to work with differnt data, [mockaroo](https://www.mockaroo.com) is a great tool for creating json files full of data. Download the file and place it in the directory you're working in.
+This is a great opportunity to practice building API's. Start from scratch with a new server and see how much you can do on your own. If you want to work with different data, [mockaroo](https://www.mockaroo.com) is a great tool for creating json files full of data. Download the file and place it in the directory you're working in.
 
 Items to reinforce and get comfortable with are:
 
