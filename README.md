@@ -15,7 +15,7 @@ The goal is to better understand how the client (frontend application) and serve
 
 ### Summary
 
-We're starting from a clean slate. We'll be building our backend service from start to finish. Often, you'll have some boilerplate code to start with. `Boilerplate` is a term that describes starter or framework code. For instance, create-react-app generates boiler plate code for us, things like our `package.json`, `node_modules`, the `src` directory, etc. Here we won't have any of that so we'll need to create it ourselves.
+We're starting from a clean slate. We'll be building our backend service from start to finish. Often, you'll have some boilerplate code to start with. `Boilerplate` is a term that describes starter or framework code. For instance, `create-react-app` generates boiler plate code for us, things like our `package.json`, `node_modules`, the `src` directory, etc. Here we won't have any of that so we'll need to create it ourselves.
 
 ### Instructions
 
@@ -317,6 +317,42 @@ Items to reinforce and get comfortable with are:
     * When should I use a `query` vs. a `param` and vice-versa?
 
 If your pair needs help answering these, utilize your available resources, then get with a mentor for further clarification. If needed, come back to the question later.
+
+## Resources
+
+<details>
+
+<summary> <code> Setting up Your Server </code> </summary>
+
+```
+There are several steps for setting up a basic Express Server:
+
+1. Run npm init -y
+2. Install your dependencies (express)
+3. Create a .gitignore file
+4. Add node_modules to your .gitignore
+5. Create the server directory
+6. Create your index file
+7. Require your dependencies
+8. Declare your app variable
+9. Declare your listen port
+10. invoke the listen method and add a console log to the callback
+11. run nodemon server/index.js in your terminal
+12. success
+
+```
+
+</details>
+
+<details>
+
+<summary> <code> Express </code> </summary>
+
+* [Express Documentation](https://expressjs.com/en/4x/api.html)
+* [Common Status Codes](http.cat)
+
+</details>
+
 
 ## Contributions
 
